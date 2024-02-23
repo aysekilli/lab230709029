@@ -1,15 +1,18 @@
 public class FindMaximum {
 
 	public static void main(String[] args){
-		int value1 = 1;
-        int value2 = 2;
-        int result;
+        if (args.length > 0) {
+            int value1 = Integer.parseInt(args[0]);
+            int value2 = Integer.parseInt(args[1]);
+            //int value1
+            //int value2
+            int result;
 
-        boolean someCondition = true;
+            boolean someCondition = value1 >   value2;
 
-        result = someCondition ? value1 : value2;
+            result = someCondition ? value1 : value2;
 
-        System.out.println(result);
-
+            System.out.println(result);
+        }
 	}
 }
