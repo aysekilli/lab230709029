@@ -4,30 +4,22 @@ import java.util.ArrayList;
 
 import shapes.Circle;
 import shapes.Rectangle;
+import shapes.Shape;
 
 public class Drawing {
-	
-	private ArrayList<Circle> circles = new ArrayList<Circle>();
-	private ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
-	
+
+	private ArrayList<Shape> shapes = new ArrayList<Shape>();
+
 	public double calculateTotalArea(){
 		double totalArea = 0;
 
-		for (Circle circle : circles){
-			totalArea += circle.area();    
+		for (Shape shape: shapes){
+			totalArea += shape.area();
 		}
-		
-		for (Rectangle rect : rectangles){            
-			totalArea += rect.area();     
-		}		
 		return totalArea;
 	}
-	
-	public void addCircle(Circle c) {
-		circles.add(c);
-	}
-	
-	public void addRectangle(Rectangle r) {
-		rectangles.add(r);
+
+	public void addShape(Shape shape) {
+		shapes.add(shape);
 	}
 }

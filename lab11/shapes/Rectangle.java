@@ -1,12 +1,11 @@
 package shapes;
 
-public class Rectangle {
-	
+public class Rectangle extends Shape{
 
 	double width;
 	double height;
 
-	
+
 	public Rectangle(double width, double height) {
 		super();
 		this.width = width;
@@ -16,7 +15,7 @@ public class Rectangle {
 	public double area(){
 		return height * width;
 
-	}	
-	
-	
+	}
+
+
 }
