@@ -14,21 +14,44 @@ public class Main {
         while (!board.isEnded()) {
 
             int player = board.getCurrentPlayer();
+            int row = 0;
+            int col = 0;
+            boolean invalidRow = false;
+            do {
+                System.out.print("Player " + player + " enter row number:");
+                try {
+                    row = Integer.valueOf(reader.nextLine());
+                    invalidRow = false;
+                }
+                catch (NumberFormatException nfe) {
+                    System.out.println("Invalid Integer");
+                    invalidRow = true;
+                }
 
-            System.out.print("Player " + player + " enter row number:");
-            int row = Integer.valueOf(reader.nextLine());
+            }while (invalidRow);
 
+            boolean invalidColumn = false;
+            do {
+                System.out.print("Player " + player + " enter column number:");
+                try {
+                    col = Integer.valueOf(reader.nextLine());
+                    invalidColumn = false;
+                }
+                catch (NumberFormatException nfe) {
+                    System.out.println("Invalid Integer");
+                    invalidColumn = true;
+                }
+            }while(invalidColumn);
 
-            System.out.print("Player " + player + " enter column number:");
-            int col = Integer.valueOf(reader.nextLine());
+            try{
+                board.move(row, col);
+            }
+            catch (InvalidMoveException ime) {
+                System.out.println(ime.getMessage());
+            }
 
-            board.move(row, col);
             System.out.println(board);
         }
-
-
         reader.close();
     }
-
-
 }

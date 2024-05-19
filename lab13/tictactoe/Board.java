@@ -2,42 +2,53 @@ package tictactoe;
 
 public class Board {
 
-	char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
-	int currentPlayer = 1;
+    char[][] board = { { ' ', ' ', ' ' }, { ' ', ' ', ' ' }, { ' ', ' ', ' ' } };
+    int currentPlayer = 1;
 
-	int moveCount;
-	
-	public boolean isEnded() {
-		return moveCount == 9;
-	}
+    int moveCount;
 
-	public int getCurrentPlayer() {
-		return currentPlayer;
-	}
+    public boolean isEnded() {
+        return moveCount == 9;
+    }
 
-	public void move(int row, int col) {
-		board[row - 1][col - 1] = currentPlayer == 1 ? 'X' : 'O';
-		currentPlayer = 3 - currentPlayer;
-		moveCount++;
-	}
-	
-	
-	public String toString() {
-		StringBuffer buf = new StringBuffer();
-		buf.append("    1   2   3\n").
-		append("   -----------\n");
-		for (int row = 0; row < 3; ++row) {
-			buf.append(row + 1 + " ");
-			for (int col = 0; col < 3; ++col) {
-				buf.append("|");
-				buf.append(" " + board[row][col] + " ");
-				if (col == 2)
-					buf.append("|");
-			}
+    public int getCurrentPlayer() {
+        return currentPlayer;
+    }
 
-			buf.append("\n");
-			buf.append("   -----------\n");
-		}
-		return buf.toString();
-	}
+    public void move(int row, int col) throws InvalidMoveException{
+        if (row < 1 || row > 3){
+            throw new InvalidMoveException("Row number should be between 1 and 3.");
+        }
+
+        if (col < 1 || col > 3){
+            throw new InvalidMoveException("Column number should be between 1 and 3.");
+        }
+
+        if (board[row - 1][col - 1] != ' '){
+            throw new InvalidMoveException("Location is already occupied.");
+        }
+        board[row - 1][col - 1] = currentPlayer == 1 ? 'X' : 'O';
+        currentPlayer = 3 - currentPlayer;
+        moveCount++;
+    }
+
+
+    public String toString() {
+        StringBuffer buf = new StringBuffer();
+        buf.append("    1   2   3\n").
+                append("   -----------\n");
+        for (int row = 0; row < 3; ++row) {
+            buf.append(row + 1 + " ");
+            for (int col = 0; col < 3; ++col) {
+                buf.append("|");
+                buf.append(" " + board[row][col] + " ");
+                if (col == 2)
+                    buf.append("|");
+            }
+
+            buf.append("\n");
+            buf.append("   -----------\n");
+        }
+        return buf.toString();
+    }
 }
